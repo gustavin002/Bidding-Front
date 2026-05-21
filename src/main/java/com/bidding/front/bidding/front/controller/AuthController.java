@@ -4,10 +4,8 @@
  */
 package com.bidding.front.bidding.front.controller;
 
-import com.bidding.front.bidding.front.model.LoginDTO;
-import com.bidding.front.bidding.front.model.LoginResponseDTO;
-import com.bidding.front.bidding.front.model.UserDTO;
-import com.bidding.front.bidding.front.service.ApiService;
+import com.bidding.front.bidding.front.model.UserRequestDTO;
+import com.bidding.front.bidding.front.service.AuthService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,68 +16,21 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    private ApiService apiService;
+    private AuthService authService;
 
     @GetMapping("/login")
-    public String telaLogin(Model model) {
-
-        model.addAttribute("loginDTO", new LoginDTO());
-
+    public String login(Model model) {
+        
+        UserRequestDTO credenciais = new UserRequestDTO();
+        model.addAttribute("credenciais", credenciais);
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(LoginDTO loginDTO, HttpSession session, Model model) {
-
-        try {
-
-            LoginResponseDTO response = apiService.logar(loginDTO);
-
-            session.setAttribute("TOKEN", response.getToken());
-
-            session.setAttribute("ROLE", response.getRole());
-
-            session.setAttribute("EMAIL", response.getEmail());
-
-            return "redirect:/editais";
-
-        } catch (Exception e) {
-
-            model.addAttribute("erro", "Email ou senha inválidos");
-
-            return "login";
-        }
+    @PostMapping("/logar")
+    public String logar(@ModelAttribute UserRequestDTO credenciais, HttpSession session){
+        session.setAttribute("email", credenciais.getEmail());
+        
+        return "redirect:/";
     }
-
-    @GetMapping("/register")
-    public String telaRegister(Model model) {
-        model.addAttribute("userDTO", new UserDTO());
-
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String registrar(UserDTO userDTO, Model model) {
-
-        try {
-
-            apiService.registrarUsuario(userDTO);
-
-            return "redirect:/login";
-
-        } catch (Exception e) {
-
-            model.addAttribute("erro", "Erro ao registrar usuário");
-
-            return "register";
-        }
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-
-        session.invalidate();
-
-        return "redirect:/login";
-    }
+    
 }
