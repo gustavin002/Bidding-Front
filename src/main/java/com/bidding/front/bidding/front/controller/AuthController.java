@@ -33,7 +33,7 @@ public class AuthController {
 
         try {
 
-            LoginResponseDTO response = (LoginResponseDTO) apiService.logar(loginDTO);
+            LoginResponseDTO response = apiService.logar(loginDTO);
 
             session.setAttribute("TOKEN", response.getToken());
 
@@ -59,8 +59,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registrar(UserDTO userDTO,
-                            Model model) {
+    public String registrar(UserDTO userDTO, Model model) {
 
         try {
 

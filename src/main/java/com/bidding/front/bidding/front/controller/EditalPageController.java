@@ -20,8 +20,7 @@ public class EditalPageController {
     private ApiService apiService;
 
     @GetMapping("/editais")
-    public String listarEditais(Model model,
-                                HttpSession session) {
+    public String listarEditais(Model model, HttpSession session) {
 
         if (session.getAttribute("TOKEN") == null) {
             return "redirect:/login";
