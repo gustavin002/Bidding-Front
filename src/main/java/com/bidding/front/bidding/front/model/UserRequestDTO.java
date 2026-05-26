@@ -4,10 +4,6 @@
  */
 package com.bidding.front.bidding.front.model;
 
-/**
- *
- * @author Usuario
- */
 // Classe de transferência de dados para requisições de login
 // DTO é usado para receber apenas os dados necessários para autenticação (email e senha)
 public class UserRequestDTO {
@@ -46,6 +42,5 @@ public class UserRequestDTO {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
 }

@@ -4,11 +4,9 @@
  */
 package com.bidding.front.bidding.front.model;
 
-
-public class UserDTO {
-
 // Classe de transferência de dados (Data Transfer Object) para usuários
 // DTO é usado para transferir dados entre camadas da aplicação (Controller -> Service -> Repository)
+public class UserDTO {
     // Identificador único do usuário no banco de dados
     private Long id;
     // Nome completo do usuário
@@ -83,7 +81,5 @@ public class UserDTO {
     public void setRole(String role) {
         this.role = role;
     }
-    
-    
-    
+
 }
