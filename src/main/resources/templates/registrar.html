@@ -8,27 +8,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}"rel="stylesheet">
     </head>
-    <body>
+    <body class="d-flex justify-content-center align-items-center vh-100">
+        <div class="container mt-5" style="max-width: 400px;">
+                <div class="card header">
         <h2>REGISTRAR</h2>
-        <form 
-            th:action="@{/registrar}" 
-            th:object="${user}" method="post"
-        >
-            <label>Nome: </label>
-            <input type="text" th:field="*{nome}" placeholder="Lambarildo" />
-            <br/><br/>
+
+        <form th:action="@{/registrar}"th:object="${user}" method="post">
             
+                
+            <label>Nome: </label>
+            <input type="text"th:field="*{nome}"th:class="${#fields.hasErrors('nome')}? 'form-control is-invalid': 'form-control'">
+            <br/>
+         
             <label>Email: </label>
-            <input type="email" th:field="*{email}" placeholder="lambarildo.peixe@hotmail.com" />
-            <br/><br/>
+            <input type="email"th:field="*{email}"th:class="${#fields.hasErrors('email')}? 'form-control is-invalid': 'form-control'">
+            <br/>
             
             <label>Senha: </label>
-            <input type="password" th:field="*{senha}"/>
-            <br/><br/>
+            <input type="password"th:field="*{senha}"th:class="${#fields.hasErrors('senha')}? 'form-control is-invalid': 'form-control'">
+            <br/>
             
-            <button type="submit"> Cadastrar</button>
+            <button type="submit">Cadastrar</button>
+            <br/>
+            <br/>
+
+            <label>Ja possui conta?</label>
             
+            <button type="submit">Faça o login</button>
         </form>
+                </div>
+        </div>
+        <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
     </body>
 </html>

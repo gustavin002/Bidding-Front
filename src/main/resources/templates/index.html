@@ -11,13 +11,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <meta charset="UTF-8" />
     <!-- Configuração de viewport para responsividade em dispositivos móveis. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}"rel="stylesheet">
   </head>
-  <body>
+    <body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container mt-5" style="max-width: 400px;">
     <!-- Conteúdo estático que será exibido na página inicial. -->
-    <div>Bem vindo a página inicial</div>
-    <div>
-        <a href="./login"><button>Logar</button></a>
-        <a href="./registrar"><button>Registrar</button></a>
+    <h1>Bem vindo ao início</h1>
+    <br/>
+        <a href="./login"><button>Fazer Login</button></a>
+        
+        <a href="./registrar"><button>Cadastrar-se</button></a>
+        
     </div>
-  </body>
+    <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
+    </body>
 </html>

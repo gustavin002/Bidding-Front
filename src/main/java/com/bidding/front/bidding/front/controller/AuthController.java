@@ -27,7 +27,7 @@ public class AuthController {
     
     // Tratador para requisições GET no caminho raiz "/".
     // Retorna o nome da view Thymeleaf "index".
-    @GetMapping("/")
+    @GetMapping
     public String home(
             HttpSession session
     ) {

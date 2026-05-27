@@ -68,6 +68,8 @@ public class AuthRestClientService {
         user.setRole("FORNECEDOR");
         String retorno = restClient.post().uri("/autenticar/registrar").body(user).retrieve().body(String.class);
     }
+    
+    
 
     /**
      * Lista os editais do backend usando o token JWT no cabeçalho Authorization.

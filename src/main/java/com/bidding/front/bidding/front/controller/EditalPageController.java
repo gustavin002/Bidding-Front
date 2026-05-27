@@ -9,19 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/api/editais")
+
 public class EditalPageController {
-    
-    
-    @GetMapping()
-    public String listarEditais (){
-        
-        return null;
-    }
-    
-    @GetMapping()
-    public String listarEditaisUrgenteTrue (){
-        
-        return null;
-    }
+
 }
