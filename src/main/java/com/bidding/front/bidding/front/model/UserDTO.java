@@ -17,6 +17,8 @@ public class UserDTO {
     private String senha;
     // Papel/função do usuário (exemplo: "COMPRADOR" ou "FORNECEDOR")
     private String role;
+    
+    private String confirmarSenha;
 
     // Construtor vazio (padrão do JavaBeans)
     public UserDTO() {
@@ -24,12 +26,13 @@ public class UserDTO {
 
     // Construtor com todos os parâmetros
     // Permite criar um usuário completamente inicializado em uma única chamada
-    public UserDTO(Long id, String nome, String email, String senha, String role) {
+    public UserDTO(Long id, String nome, String email, String senha, String role, String confirmarSenha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.role = role;
+        this.confirmarSenha = confirmarSenha;
     }
 
     // Método getter - retorna o id do usuário
@@ -82,4 +85,12 @@ public class UserDTO {
         this.role = role;
     }
 
+    public String getConfirmarSenha() {
+        return confirmarSenha;
+    }
+
+    public void setConfirmarSenha(String confirmarSenha) {
+        this.confirmarSenha = confirmarSenha;
+    }
+  
 }
