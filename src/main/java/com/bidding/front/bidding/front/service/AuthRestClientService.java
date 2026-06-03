@@ -9,8 +9,10 @@ import com.bidding.front.bidding.front.model.UserDTO;
 import com.bidding.front.bidding.front.model.UserRequestDTO;
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.server.ResponseStatusException;
 
 /**
  * Serviço de autenticação usando RestClient em vez de RestTemplate.
@@ -53,7 +55,7 @@ public class AuthRestClientService {
         return restClient.post()
                 // Define o caminho relativo ao endpoint de autenticação.
                 // A URL final será "http://localhost:3333/api/auth/logar".
-                .uri("/autenticar/logar")
+                .uri("/auth/logar")
                 // Define o corpo da requisição como o DTO de login.
                 // O Spring converte automaticamente este objeto para JSON.
                 .body(user)
@@ -65,8 +67,14 @@ public class AuthRestClientService {
     }
     
     public void registrar(UserDTO user ) {
+        if(!user.getSenha().equals(user.getConfirmarSenha())) {
+            throw new ResponseStatusException(
+                    HttpStatusCode.valueOf(400), 
+                    "Senha e Confirmar Senha Diferentes");
+        }
+        
         user.setRole("FORNECEDOR");
-        String retorno = restClient.post().uri("/autenticar/registrar").body(user).retrieve().body(String.class);
+        String retorno = restClient.post().uri("/auth/registrar").body(user).retrieve().body(String.class);
     }
     
     /**

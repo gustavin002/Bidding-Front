@@ -5,7 +5,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Registrar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}"rel="stylesheet">
@@ -21,21 +21,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="card-body">
             <form th:action="@{/registrar}" th:object="${user}" method="post">
 
-            <label>Nome:</label>
-            <input type="text" th:field="*{nome}"th:class="${#fields.hasErrors('nome')}? 'form-control is-invalid': 'form-control'">
+            <div class="form-floating">    
+            <input type="text" th:field="*{nome}" class="form-control" id="floatingName" placeholder="nome">
+            <label for="floatingName">Nome:</label>
             <br/>
-
-            <label>Email:</label>
-            <input type="email" th:field="*{email}"th:class="${#fields.hasErrors('email')}? 'form-control is-invalid': 'form-control'">
+            </div>
+                
+            <div class="form-floating"> 
+            <input type="email" th:field="*{email}" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email:</label>
             <br/>
-
-            <label>Senha:</label>
-            <input type="password" th:field="*{senha}"th:class="${#fields.hasErrors('senha')}? 'form-control is-invalid': 'form-control'">
+            </div>    
+            
+            <div class="form-floating">
+            <input type="password" th:field="*{senha}" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Senha:</label>
+            <br/>
+            </div>
+                
+            <div class="form-floating">    
+            <input type="password" th:field="*{confirmarSenha}" class="form-control" id="confirmaSenha" placeholder="Password">
+            <label for="confirmaSenha">Confirmar senha:</label>
             <br/>
             
-            <label>Confirmar senha:</label>
-            <input type="password" th:field="*{confirmarSenha}"th:class="${#fields.hasErrors('confirmarSenha')}? 'form-control is-invalid': 'form-control'">
-            <br/>
+            </div>
             
             <div class="invalid-feedback" th:if="${#fields.hasErrors('confirmarSenha')}" 
                 th:errors="*{confirmarSenha}">
@@ -46,6 +55,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
             <br/>
             <a th:href="@{/login}" class="btn btn-link w-100">Já possui conta?</a>
+            
+            <div th:if="${erroServidor}" class="alert alert-danger" style="color: #ef4444; background: rgba(239, 68, 68, 0.1); padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                <span th:text="${erroServidor}">Erro padrão</span>
+            </div>
 
             </form>
         </div>

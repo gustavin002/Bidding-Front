@@ -22,16 +22,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="card-body">
         <form th:action="@{/logar}" th:object="${credenciais}" method="post">
             
-            <label>Email:</label>
-            <input type="email" th:field="*{email}"th:class="${#fields.hasErrors('email')}? 'form-control is-invalid': 'form-control'">
+            <div class="form-floating mb-3">
+            <input type="email" th:field="*{email}" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email:</label>
             <br/>
-
-            <label>Senha:</label>
-            <input type="password" th:field="*{senha}"th:class="${#fields.hasErrors('senha')}? 'form-control is-invalid': 'form-control'">
+            </div>
+            
+            <div class="form-floating mb-3">
+            <input type="password" th:field="*{senha}" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Senha:</label>
             <br/>
-
+            </div>
+             
             <div class="d-flex justify-content-center">
-                <button type="button" class="btn btn-dark">Logar</button>
+                <button type="submit" class="btn btn-dark">Logar</button>
             </div>
             <br/>
             <a th:href="@{/registrar}" class="btn btn-link w-100">Não possui conta?</a>

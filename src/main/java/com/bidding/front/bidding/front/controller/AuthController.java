@@ -14,6 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * Controller responsável por atender às requisições de autenticação e páginas públicas.
@@ -27,10 +30,17 @@ public class AuthController {
     
     // Tratador para requisições GET no caminho raiz "/".
     // Retorna o nome da view Thymeleaf "index".
-    @GetMapping
+    @GetMapping("/")
     public String home(
             HttpSession session
     ) {
+        
+        Object token = session.getAttribute("token");
+        
+        if(token == null) {
+            return "index";
+        }
+        
         return "index";
     }
     
@@ -58,7 +68,7 @@ public class AuthController {
         System.out.println("token: "+token);
         session.setAttribute("token", token);
         // Redireciona de volta para a página inicial após login bem sucedido.
-        return "redirect:/editais";
+        return "redirect:/";
     }
     
     @GetMapping("/registrar")
@@ -72,9 +82,35 @@ public class AuthController {
     
     @PostMapping("/registrar")
     public String mandarRegistro(
-            @ModelAttribute UserDTO user
+            @ModelAttribute UserDTO user,
+            RedirectAttributes redirectAttributes
     ) {
-        restService.registrar(user);
-        return "redirect:/login";
+
+       try {
+            restService.registrar(user);
+            
+            // Se o registro funcionar, envia uma mensagem de sucesso para a tela de login
+            redirectAttributes.addFlashAttribute("mensagemSucesso", "Cadastro realizado com sucesso! Faça o login.");
+            return "redirect:/login";
+            
+        } catch (HttpStatusCodeException ex) {
+            // Captura erros do backend (Ex: 400 - "Email já cadastrado", "Senha fraca", etc.)
+            // ex.getStatusText() ou ex.getResponseBodyAsString() trazem o erro do backend
+            String mensagemErroDoBackend = new ObjectMapper()
+                    .readTree(
+                            ex.getResponseBodyAsString()
+                    ).get("message").asString(); 
+            redirectAttributes.addFlashAttribute(
+                    "erroServidor", 
+                    mensagemErroDoBackend
+            );
+           
+            return "redirect:/registrar"; // Redireciona de volta para o formulário mantendo o aviso
+            
+        } catch (Exception e) {
+            
+            redirectAttributes.addFlashAttribute("erroServidor", e.getMessage());
+            return "redirect:/registrar";
+        }
     }
 }
