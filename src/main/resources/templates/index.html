@@ -3,7 +3,7 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Define o título da página exibido na aba do navegador. -->
         <title>Tela Inicial</title>
@@ -14,27 +14,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <link th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}"rel="stylesheet">
     </head>
     <body>
-         <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="d-flex me-auto">
-                    <a class="nav-link active text-white me-3" href="#">Início</a>
-                    <a class="nav-link text-white" href="./editais">Editais</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="d-flex me-auto">
+                        <a class="nav-link active text-white me-3" href="#">Início</a>
+                        <a class="nav-link text-white me-3" href="./editais">Editais</a>
+                    </div>
+
+                    <div class="d-flex p-1">
+                        <a class="btn btn-danger" href="./login">Logout</a>
+                    </div>
+
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <div class="container mt-5">
-        <h1>Bem vindo ao início</h1>
-        <a href="./login" class="btn btn-dark">Fazer Login</a>
-        <a href="./registrar" class="btn btn-dark">Cadastrar-se</a>
-    </div>
-        
+        <div class="container mt-5">
+            <h1>Bem vindo ao início</h1>
+            <a href="./login" class="btn btn-dark">Fazer Login</a>
+            <a href="./registrar" class="btn btn-dark">Cadastrar-se</a>
+        </div>
+
         <script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.bundle.min.js}"></script>
     </body>
 </html>
