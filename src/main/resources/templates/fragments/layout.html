@@ -12,19 +12,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <!-- HEADER Fragment -->
         <header th:fragment="custom-header">
-            <nav class="d-flex justify-content-between p-3 bg-secondary">
+            <nav class="d-flex justify-content-between p-3 bg-secondary bg-dark">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link text-white" aria-current="page" th:href="@{/}">Página Inicial</a>
+                        <a class="nav-link text-white" aria-current="page" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" aria-current="page" th:href="@{/editais/list}">Editais</a>
                     </li>
                 </ul>
                 <a th:href="@{/login}">
-                    <button class="btn btn-danger">
-                        Sair
-                    </button>
+                    <button class="btn btn-danger">Sair</button>
                 </a>
             </nav>
         </header>

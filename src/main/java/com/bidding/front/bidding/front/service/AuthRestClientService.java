@@ -40,7 +40,7 @@ public class AuthRestClientService {
         this.restClient = RestClient.builder()
                 // Define a base URL que será usada em todas as requisições.
                 // Depois, cada chamada só precisa informar o caminho relativo.
-                .baseUrl("http://localhost:8883/api")
+                .baseUrl("http://localhost:9000/api")
                 .build();
     }
 

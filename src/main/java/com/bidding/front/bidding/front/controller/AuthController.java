@@ -38,7 +38,7 @@ public class AuthController {
         Object token = session.getAttribute("token");
         
         if(token == null) {
-            return "index";
+            return "redirect:/login";
         }
         
         return "index";
